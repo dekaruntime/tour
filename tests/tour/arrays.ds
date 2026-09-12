@@ -8,6 +8,6 @@ fn sum(values: Array<number>) number {
 }
 
 let values = [1, 2, 3]
-values[0] = 10
+if (values.has(0)) { values[0] = 10 }
 echo(string(values.length))
 echo(string(sum(values)))
