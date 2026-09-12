@@ -1,1 +1,9 @@
-try {} catch (error) {}
+// rfd#62: a caught Throw does not escape this function's frame.
+fn titleLength() number {
+  try {
+    return Throw("title is required")
+  } catch (error) {
+    return error.length
+  }
+}
+const length = titleLength()
