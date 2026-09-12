@@ -54,15 +54,14 @@
   },
   {
     "id": "try-diagnostic",
-    "title": "try diagnostic",
-    "expectCompile": false,
-    "expectError": "expected `;` or newline, found `identifier`"
+    "title": "frame-local try and catch",
+    "expectCompile": true
   },
   {
     "id": "throw-diagnostic",
     "title": "throw diagnostic",
     "expectCompile": false,
-    "expectError": "unknown identifier `throw`"
+    "expectError": "use `Throw(e)`"
   },
   {
     "id": "current-boundary",
