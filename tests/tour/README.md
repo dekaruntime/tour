@@ -51,5 +51,5 @@ The five new runnable lessons include expected output comments; their output
 was also checked with `deka run` using the same pinned compiler and io package.
 
 [Summon intro](blocked/summon-intro/README.md) is an excluded draft, blocked on
-sibling-module delivery and the compiler's colon-only summon signature syntax.
+sibling-module delivery. dsc#188 (0.52.0) unblocks its colon-free summon syntax.
 It is not a manifest entry or a published runnable page.
