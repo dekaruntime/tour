@@ -1,10 +1,10 @@
-fn Card() Component {
+fn Card() ReactNode {
   return <div class={"p-4 rounded-lg bg-card shadow"}>
 <h1 class={"text-2xl font-bold text-foreground"}>Hello</h1>
 <p class={"text-muted-foreground"}>Styled with utility classes</p>
 </div>
 }
 
-export fn Page() Component {
+export fn Page() ReactNode {
   return <Card />
 }

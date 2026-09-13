@@ -4,13 +4,13 @@ interface CardProps {
 }
 
 interface LayoutProps {
-  children: Component;
+  children: ReactNode;
 }
 
 // Props are checked at the call site, not only where they are read. A missing
 // required prop, a wrong type, or a name that is not a prop at all are all
 // compile errors on the `<Card … />` line.
-fn Card(props: CardProps) Component {
+fn Card(props: CardProps) ReactNode {
   const sub = match (props.subtitle) {
     Some(s) => <p>{s}</p>,
     None => <></>,
@@ -22,7 +22,7 @@ fn Card(props: CardProps) Component {
 }
 
 // `children` is filled by nesting rather than by an attribute.
-fn Layout(props: LayoutProps) Component {
+fn Layout(props: LayoutProps) ReactNode {
   return <main>{props.children}</main>
 }
 
@@ -37,6 +37,6 @@ const full = <Card title={"Hello"} subtitle={"DekaScript"} />
 //   <Card title="x" subtitel="y" />   interface `CardProps` has no prop `subtitel`
 //   <Layout></Layout>                 missing required prop `children`
 
-export fn Page() Component {
+export fn Page() ReactNode {
   return <Layout><Card title={"Hello"} /></Layout>
 }
