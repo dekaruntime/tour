@@ -1,0 +1,28 @@
+import { echo } from "io"
+
+// Indexing is gated: items[i] needs a bounds proof for this array and index.
+// Even a literal index needs proof. A range loop supplies one on every turn.
+const items = ["north", "star"]
+for i in 0..items.length {
+  echo(items[i])
+}
+
+// A comparison pair proves both bounds inside its branch.
+const i = 1
+if (i >= 0 && i < items.length) {
+  echo(items[i])
+}
+
+// has() supplies the proof on its true branch, including in a ternary.
+const missing = 9
+echo(items.has(missing) ? items[missing] : "outside")
+
+struct Shelf { labels: Array<string>; }
+const shelf = Shelf { labels: ["Deka"] }
+// Proofs track bare local names, not field paths like shelf.labels.
+// Bless the hoist: name the field first, then guard and index that local.
+const labels = shelf.labels
+const first = 0
+echo(labels.has(first) ? labels[first] : "empty")
+// Keep the proof and access together; writes can invalidate bounds facts.
+// Output: north, star, star, outside, Deka (one per line).

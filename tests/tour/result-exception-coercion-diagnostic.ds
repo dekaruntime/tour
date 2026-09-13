@@ -1,0 +1,3 @@
+// An Exception call cannot implicitly become a Result value.
+fn source() Exception<number, string> { return Ok(7) }
+fn saved() Result<number, string> { return source() }

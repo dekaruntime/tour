@@ -1,0 +1,31 @@
+import { echo } from "io"
+
+// Exception<T, E> describes control flow: succeed with T or fail with E.
+fn title(text: string) Exception<string, string> {
+  if (text == "") { return Throw("title is required") }
+  return Ok(text)
+}
+
+fn heading(text: string) Exception<string, string> {
+  const value = match title(text) {
+    Ok(value) => value,
+    Throw(error),
+  }
+  // The bodyless Throw arm propagates out of this Exception function.
+  // It does not supply a value or continue to this line.
+  return Ok("# " + value)
+}
+
+// Consume the call with match; an Exception is not a stored result object.
+fn show(text: string) string {
+  return match heading(text) {
+    Ok(value) => value,
+    Throw(error) => "failed: " + error,
+  }
+}
+
+// In emitted JavaScript, Ok returns its payload, Throw raises it, and this
+// consuming match becomes native try/catch. There is no tagged wrapper.
+echo(show("Deka"))
+echo(show(""))
+// Output: # Deka, failed: title is required (one per line).
