@@ -1,0 +1,24 @@
+// BLOCKED draft: see README.md here; not a runnable/published lesson.
+import { echo } from "io"
+
+// Declare a typed boundary over a vendored JavaScript module. Nothing is
+// downloaded by this declaration; the compiler checks the local exports.
+summon {
+  total double(value: number) number,
+  decode(text: string) Exception<string, JsError>,
+} from "./vendor.mjs"
+
+// total is our promise that the function has no checked failure channel.
+echo(string(double(3)))
+
+// A fallible boundary must be consumed, just like a DekaScript Exception.
+// The foreign function returns a payload or raises an error directly.
+echo(match decode("%44eka") {
+  Ok(value) => value,
+  Throw(error) => "could not decode",
+})
+echo(match decode("%") {
+  Ok(value) => value,
+  Throw(error) => "could not decode",
+})
+// Output: 6, Deka, could not decode (one per line).

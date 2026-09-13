@@ -1,0 +1,3 @@
+// A literal index still needs a proof; use items.has(0) before indexing.
+const items = ["Deka"]
+const first = items[0]

@@ -1,0 +1,32 @@
+import { echo } from "io"
+
+fn readTitle(text: string) Exception<string, string> {
+  if (text == "") { return Throw("missing title") }
+  return Ok(text)
+}
+
+// Result<T, E> is data: it can be stored and matched again later.
+// Crossing from control flow to a value is an explicit choice.
+fn saveTitle(text: string) Result<string, string> {
+  return match readTitle(text) {
+    Ok(value) => Ok(value),
+    Throw(error) => Err(error),
+  }
+}
+
+// The other direction is explicit too: an Err becomes a Throw.
+fn resume(saved: Result<string, string>) Exception<string, string> {
+  return match saved {
+    Ok(value) => Ok(value),
+    Err(error) => Throw(error),
+  }
+}
+
+// Returning readTitle(text) directly from saveTitle is a checker error.
+// Sharing Ok syntax does not permit implicit Exception/Result coercion.
+const saved = saveTitle("")
+echo(match saved { Ok(value) => value, Err(error) => "saved: " + error })
+echo(match saved { Ok(value) => value, Err(error) => "still here: " + error })
+echo(match resume(saved) { Ok(value) => value, Throw(error) => "handled: " + error })
+// Output: saved: missing title, still here: missing title,
+// handled: missing title (one per line).

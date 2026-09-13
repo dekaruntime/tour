@@ -21,7 +21,7 @@ const contact = match (user.email) {
   None => "no email",
 }
 
-// There is no presence test. Absence is a case, so it is a branch.
+// isset tests presence; match also extracts the payload when it is present.
 fn greet(profile: Profile) string {
   return match (profile.nickname) {
     Some(name) => name,

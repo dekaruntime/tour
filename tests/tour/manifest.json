@@ -37,6 +37,17 @@
     "expectCompile": true
   },
   {
+    "id": "indexing-proofs",
+    "title": "indexing proofs",
+    "expectCompile": true
+  },
+  {
+    "id": "indexing-proof-diagnostic",
+    "title": "indexing proof diagnostic",
+    "expectCompile": false,
+    "expectError": "index not proven in bounds"
+  },
+  {
     "id": "for-of",
     "title": "for of",
     "expectCompile": true
@@ -51,6 +62,22 @@
     "id": "errors-are-values",
     "title": "errors are values",
     "expectCompile": true
+  },
+  {
+    "id": "exceptions",
+    "title": "exceptions",
+    "expectCompile": true
+  },
+  {
+    "id": "result-vs-exception",
+    "title": "result vs exception",
+    "expectCompile": true
+  },
+  {
+    "id": "result-exception-coercion-diagnostic",
+    "title": "result exception coercion diagnostic",
+    "expectCompile": false,
+    "expectError": "expected return type `Result<number, string>`, found type `Exception<number, string>`"
   },
   {
     "id": "try-diagnostic",
@@ -146,6 +173,11 @@
     "expectCompile": true
   },
   {
+    "id": "ternary",
+    "title": "ternary",
+    "expectCompile": true
+  },
+  {
     "id": "match-struct-patterns",
     "title": "match struct patterns",
     "expectCompile": true
@@ -205,6 +237,17 @@
     "id": "result-and-option",
     "title": "result and option",
     "expectCompile": true
+  },
+  {
+    "id": "option-under-erasure",
+    "title": "option under erasure",
+    "expectCompile": true
+  },
+  {
+    "id": "nested-option-erasure-diagnostic",
+    "title": "nested option erasure diagnostic",
+    "expectCompile": false,
+    "expectError": "`Option<Option<T>>` is ambiguous under erasure"
   },
   {
     "id": "option-payload-diagnostic",

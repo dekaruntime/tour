@@ -1,0 +1,21 @@
+import { echo } from "io"
+
+// A ternary chooses one of two values. Only the chosen branch runs.
+fn access(signedIn: boolean, member: boolean, guest: boolean) string {
+  // && binds tighter than ||, and both bind tighter than ? :.
+  // Read the condition as (signedIn && member) || guest.
+  return signedIn && member || guest ? "welcome" : "sign in"
+}
+
+echo(access(true, true, false))
+echo(access(false, false, true))
+echo(access(true, false, false))
+
+// Use match when the choice has several cases or needs a payload.
+// It also checks that every Option case is covered.
+const name = Some("Deka")
+echo(match name {
+  Some(value) => value,
+  None => "friend",
+})
+// Output: welcome, welcome, sign in, Deka (one per line).

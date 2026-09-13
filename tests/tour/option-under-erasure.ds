@@ -1,0 +1,28 @@
+import { echo } from "io"
+
+// Some and None are values: store them, pass them, or match their cases.
+fn describe(value: Option<number>) string {
+  return match value {
+    Some(number) => "got " + string(number),
+    None => "absent",
+  }
+}
+const present: Option<number> = Some(0)
+const absent: Option<number> = None
+echo(describe(present))
+echo(describe(absent))
+
+// isset tests presence, not truthiness: Some(0) and Some(false) are present.
+echo(string(isset(present)))
+echo(string(isset(Some(false))))
+echo(string(isset(absent)))
+
+struct Profile { name: string; score: Option<number>; }
+// Since 0.51.1, omitted Option struct fields mean None.
+const profile = Profile { name: "Deka" }
+echo(describe(profile.score))
+
+// JavaScript receives the Some payload directly; None becomes undefined.
+// Option<Option<T>> is rejected: Some(None) and None would erase to the same
+// value. Use a named enum when you need two distinct kinds of absence.
+// Output: got 0, absent, true, true, false, absent (one per line).
