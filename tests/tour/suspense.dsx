@@ -1,7 +1,7 @@
-fn Ready() Component {
+fn Ready() ReactNode {
   return <p>loaded</p>
 }
 
-export fn Page() Component {
+export fn Page() ReactNode {
   return <Ready />
 }

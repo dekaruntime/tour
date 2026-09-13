@@ -4,7 +4,7 @@ struct CounterProps {
   start: number;
 }
 
-fn Counter(props: CounterProps) Component {
+fn Counter(props: CounterProps) ReactNode {
   return <button>{props.start}</button>
 }
 
@@ -15,6 +15,6 @@ match (result) {
   Err(e) => echo(e),
 }
 
-export fn Page() Component {
+export fn Page() ReactNode {
   return <Counter client={"load"} start={5} />
 }

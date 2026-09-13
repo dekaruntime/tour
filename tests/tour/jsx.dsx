@@ -2,10 +2,10 @@ interface GreetingProps {
   name: string;
 }
 
-fn Greeting(props: GreetingProps) Component {
+fn Greeting(props: GreetingProps) ReactNode {
   return <h1>Hello{props.name}</h1>
 }
 
-export fn Page() Component {
+export fn Page() ReactNode {
   return <Greeting name={"DekaScript"} />
 }
