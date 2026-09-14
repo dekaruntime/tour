@@ -1,6 +1,7 @@
 import { echo } from "io"
-const parsed = unsafe { JSON.parse("{\"answer\":42}") }
+struct Parsed { answer: number }
+const parsed = unsafe<Parsed> { JSON.parse("{\"answer\":42}") }
 echo(match (parsed) {
-  Ok(v) => v.answer,
+  Ok(v) => string(v.answer),
   Err(_) => "parse failed",
 })
