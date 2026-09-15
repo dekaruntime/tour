@@ -15,10 +15,12 @@ fn Card(props: CardProps) ReactNode {
     Some(s) => <p>{s}</p>,
     None => <></>,
   }
-  return <article>
-<h2>{props.title}</h2>
-{sub}
-</article>
+  return (
+    <article>
+      <h2>{props.title}</h2>
+      {sub}
+    </article>
+  )
 }
 
 // `children` is filled by nesting rather than by an attribute.
