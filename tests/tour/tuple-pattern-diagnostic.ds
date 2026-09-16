@@ -1,0 +1,8 @@
+// Destructuring does not nest. A tuple inside a tuple must come out in
+// two steps: bind the outer tuple first, then destructure the position
+// that is itself a tuple.
+fn nested() [[number, number], string] {
+  return [[1, 2], "point"]
+}
+
+const [[x, y], label] = nested()

@@ -9,6 +9,7 @@ fn Counter(props: CounterProps) ReactNode {
 }
 
 struct Rendered { html: string }
+
 const element = <Counter client={"load"} start={5} />
 const result = unsafe<Rendered> { deka.ui.renderToString(element) }
 match (result) {

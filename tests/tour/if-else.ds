@@ -1,4 +1,5 @@
 import { echo } from "io"
+
 const score = 85
 let grade = ""
 if (score >= 90) {
@@ -10,4 +11,5 @@ if (score >= 90) {
 } else {
   grade = "F"
 }
+
 echo(grade)

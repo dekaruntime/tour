@@ -1,0 +1,45 @@
+import { echo } from "io"
+
+// A tuple is a fixed-length, heterogeneous, position-typed value. Write
+// the type as a bracket list of the element types, in order.
+const point: [string, number] = ["x", 1]
+
+// Destructuring pulls every position out by name in one step. The arity
+// must match exactly — no silent drop of a trailing element.
+const [label, value] = point
+
+echo(label)
+echo(string(value))
+
+// A literal position is proven in bounds by the tuple's own type, so
+// indexing needs no runtime check — unlike Array<T>, where the same
+// index would need a proof from `has()` or a bounds check first.
+echo(point[0])
+echo(string(point[1]))
+
+// Tuples work as parameters and return types too.
+fn swap(pair: [string, number]) [number, string] {
+  return [pair[1], pair[0]]
+}
+
+const [n, s] = swap(point)
+
+echo(string(n))
+echo(s)
+
+// Array<T> is for a run of values that are all the same type and whose
+// length varies at runtime. A tuple is for a fixed handful of positions
+// that each mean something different — a coordinate, a key/value pair,
+// the (count, setter) shape a hook returns. Reach for Array<T> when you
+// would otherwise write the same element type at every position; reach
+// for a tuple when the positions have different types or different
+// meanings.
+const scores: Array<number> = [10, 20, 30]
+
+// Array<T> still needs a bounds proof for every index, even a literal one
+// (see indexing-proofs) — the tuple's fixed shape is what buys point[0]
+// its free pass above.
+if (scores.has(0)) {
+  echo(string(scores[0]))
+}
+// Output: x, 1, x, 1, 1, x, 10 (one per line).

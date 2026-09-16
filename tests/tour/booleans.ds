@@ -1,4 +1,5 @@
 import { echo } from "io"
+
 const yes = true
 const no = false
 echo(string(yes && no))

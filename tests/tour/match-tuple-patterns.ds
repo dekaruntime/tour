@@ -1,5 +1,12 @@
-const pair = [3, 4]
+import { echo } from "io"
+
+// Match arms destructure a tuple with the same parenthesized pattern
+// syntax used for arrays — the scrutinee's tuple type supplies each
+// position's type, and the pattern's arity must match it exactly.
+const pair: [number, number] = [3, 4]
+
 const first = match (pair) {
   (head, tail) => head,
-  _ => 0,
 }
+
+echo(string(first))

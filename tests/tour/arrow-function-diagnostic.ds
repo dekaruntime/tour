@@ -1,0 +1,7 @@
+// An arrow's parameter list always needs parens, even for one parameter —
+// `n =>` is not a shorter spelling of `(n) =>`, it is a parse error.
+fn apply(n: number, f: fn(number) number) number {
+  return f(n)
+}
+
+const tripled = apply(7, n => n * 3)
