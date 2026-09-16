@@ -1,0 +1,43 @@
+import { echo } from "io"
+
+// A function literal can be written with `fn`, types spelled out in full:
+const doubleFn = fn(n: number) number { return n * 2 }
+
+// ...or with `=>`. The arrow always needs parens around its parameter
+// list, even for a single parameter — the grammar never has to guess
+// whether `(` starts a parameter list or a parenthesized expression.
+const doubleArrow = (n: number) => n * 2
+
+echo(string(doubleFn(3)))
+echo(string(doubleArrow(3)))
+
+// A single-expression body implicitly returns it — no `return`, no braces.
+// A block body works too, with the ordinary `return` rules.
+const square = (n: number) => n * n
+const cube = (n: number) => {
+  const squared = n * n
+  return squared * n
+}
+
+echo(string(square(4)))
+echo(string(cube(3)))
+
+// Contextual typing: when a function literal is passed where the expected
+// function type is already known, its parameters take their types from
+// that position. `apply` expects `f: fn(number) number`, so the arrow's
+// `n` needs no annotation of its own here.
+fn apply(n: number, f: fn(number) number) number {
+  return f(n)
+}
+
+const tripled = apply(7, (n) => n * 3)
+
+echo(string(tripled))
+
+// Without an expected type there is nothing to infer from, so a literal
+// bound straight to a `const` still needs its parameter annotated — see
+// arrow-function-diagnostic for what happens if you leave it off.
+const half = (n: number) => n / 2
+
+echo(string(half(10)))
+// Output: 6, 6, 16, 27, 21, 5 (one per line).

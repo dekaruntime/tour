@@ -1,6 +1,33 @@
 import { echo } from "io"
+
+// `|>` takes the value on its left and hands it in as the first argument
+// of the call on its right. A bare function name after `|>` is shorthand
+// for calling it with just that one argument.
 fn double(n: number) number {
   return n * 2
 }
-const n = 21 |> double
+
+fn triple(n: number) number {
+  return n * 3
+}
+
+// Read this top to bottom: start with 2, double it, then triple the
+// result. Without the pipe you would write triple(double(2)) and read
+// it inside-out — innermost call first, outermost last.
+const n = 2
+  |> double
+  |> triple
+
 echo(string(n))
+
+// The piped value does not have to be the only argument. It always
+// becomes the FIRST one; any arguments written in the call are the rest.
+fn add(n: number, x: number) number {
+  return n + x
+}
+
+// 5 |> add(1) reads as "take 5, then add(_, 1)" — equivalent to add(5, 1).
+const total = 5 |> add(1)
+
+echo(string(total))
+// Output: 12, 6 (one per line).

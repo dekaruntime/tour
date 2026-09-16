@@ -29,6 +29,39 @@ Every `.dsx` lesson must `export fn Page` (RFD 24 §16): a `.dsx` lesson is
 asserts this contract and fails a `.dsx` lesson that ends in a bare JSX
 expression instead.
 
+## Authoring style
+
+Lessons breathe, like Gleam's tour: one blank line between top-level
+declarations (`import`, `fn`, `struct`, `enum`, `type`/`alias`, `interface`)
+and one blank line after the closing `}` of a top-level declaration block,
+even when the next line immediately uses what it just declared. A
+multi-line `|>` chain gets one step per line. `dsc fmt --check` must pass
+on every lesson unchanged -- it preserves blank lines and multi-line pipe
+chains, so a lesson that fails the check has drifted from its own
+formatting, not just its content.
+
+## Expressions section (dsc 0.53.5)
+
+`pipe-operator` now reads like Gleam's pipelines page: a `double |>
+triple` chain read top to bottom, plus a second example showing a pipe
+target with its own arguments already filled in (`5 |> add(1)` is
+`add(5, 1)`). `pipe-arguments` was folded into it and removed, since
+nothing else referenced that id.
+
+`arrow-functions` puts the `fn(...)` and `=>` forms side by side, then
+contextual typing: an arrow passed where a `fn(number) number` is
+expected needs no parameter annotation of its own, but a literal bound
+straight to a `const` with nothing to infer from still does.
+`arrow-function-diagnostic` captures the parenthesization error for a
+bare `n =>`.
+
+`tuples` introduces `[T, U, ...]` as a fixed-length, position-typed
+value distinct from `Array<T>`: literal, destructure, indexed read with
+no bounds proof needed, and tuple parameter/return types.
+`match-tuple-patterns` now matches a real `[number, number]` tuple
+instead of an array literal. `tuple-pattern-diagnostic` captures the
+nested-tuple-pattern validation error (dsc#218).
+
 ## New language surface (dsc 0.51.1)
 
 With release binaries, use deka 0.50.0 as the native CLI and select its compiler

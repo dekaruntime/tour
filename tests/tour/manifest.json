@@ -183,6 +183,17 @@
     "expectCompile": true
   },
   {
+    "id": "tuples",
+    "title": "tuples",
+    "expectCompile": true
+  },
+  {
+    "id": "tuple-pattern-diagnostic",
+    "title": "tuple pattern diagnostic",
+    "expectCompile": false,
+    "expectError": "nested tuple patterns are not supported; destructure in two steps: `const [pair, label] = ...` then `const [x, y] = pair`"
+  },
+  {
     "id": "match-tuple-patterns",
     "title": "match tuple patterns",
     "expectCompile": true
@@ -296,6 +307,17 @@
     "expectCompile": true
   },
   {
+    "id": "arrow-functions",
+    "title": "arrow functions",
+    "expectCompile": true
+  },
+  {
+    "id": "arrow-function-diagnostic",
+    "title": "arrow function diagnostic",
+    "expectCompile": false,
+    "expectError": "arrow function parameters must be parenthesized: write `(n) =>` instead of `n =>`"
+  },
+  {
     "id": "pipe-operator",
     "title": "pipe operator",
     "expectCompile": true
@@ -305,11 +327,6 @@
     "title": "pipe unresolved target diagnostic",
     "expectCompile": false,
     "expectError": "unknown identifier `missing`"
-  },
-  {
-    "id": "pipe-arguments",
-    "title": "pipe arguments",
-    "expectCompile": true
   },
   {
     "id": "function-captures",

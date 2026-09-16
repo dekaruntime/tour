@@ -6,4 +6,5 @@ fn titleLength() number {
     return error.length
   }
 }
+
 const length = titleLength()

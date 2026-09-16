@@ -18,6 +18,7 @@ const missing = 9
 echo(items.has(missing) ? items[missing] : "outside")
 
 struct Shelf { labels: Array<string>; }
+
 const shelf = Shelf { labels: ["Deka"] }
 // Proofs track bare local names, not field paths like shelf.labels.
 // Bless the hoist: name the field first, then guard and index that local.

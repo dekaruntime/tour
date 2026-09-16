@@ -1,4 +1,5 @@
 import { echo } from "io"
+
 const safe: Result<number, JsError> = unsafe<number> { 42 }
 match (safe) {
   Ok(v) => echo(string(v)),

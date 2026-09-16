@@ -31,7 +31,7 @@ fn greet(profile: Profile) string {
 
 echo(contact)
 echo(greet({nickname: None}))
-echo(greet({nickname: Option.Some("Deka")}))// A plain object literal must say which one it means — `greet({})` does not
+echo(greet({nickname: Option.Some("Deka")})) // A plain object literal must say which one it means — `greet({})` does not
 // compile. A JSX element is different: the compiler owns that construction
 // site, so `<Card title="Hello" />` fills the omitted prop with None and wraps
 // a bare `subtitle="World"` in Some. See the props lesson.
